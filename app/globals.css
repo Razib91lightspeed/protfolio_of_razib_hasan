@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Increase base font size site-wide */
+@layer base {
+  html {
+    font-size: 18px; /* default is 16px */
+  }
+}
+
+html, body { height: 100%; }
+body { @apply bg-white text-gray-900 dark:bg-[#0b0f17] dark:text-gray-100; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Section container */
+.section { @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+.btn { @apply inline-flex items-center rounded-lg px-5 py-3 font-medium transition; }
+.btn-primary { @apply bg-brand text-black hover:bg-brand-dark; }
+.btn-outline { @apply border border-brand text-brand hover:bg-brand hover:text-black; }
+
+.card { @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-lg; }
+
+/* Simple link style */
+.link { @apply underline decoration-brand underline-offset-4 hover:decoration-brand-dark; }
