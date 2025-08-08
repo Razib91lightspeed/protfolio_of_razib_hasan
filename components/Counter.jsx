@@ -30,7 +30,7 @@ export default function Counter({ value, label, duration = 1200 }) {
   return (
     <div ref={el} className="card p-6 text-center">
       <div className="text-4xl font-extrabold">{num}</div>
-      <div className="mt-1 text-sm text-gray-500">{label}</div>
+      <div className="mt-1 text-base text-gray-500">{label}</div>
     </div>
   );
 }

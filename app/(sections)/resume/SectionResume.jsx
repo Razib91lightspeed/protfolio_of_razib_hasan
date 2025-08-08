@@ -12,7 +12,7 @@ export default function SectionResume() {
 
       {/* EXPERIENCE */}
       <div className="mt-12">
-        <h3 className="text-2xl font-semibold mb-6">Experience</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-center">Experience</h3>
         <div className="grid lg:grid-cols-2 gap-10">
           {experience.map((item, i) => (
             <motion.div
@@ -23,11 +23,11 @@ export default function SectionResume() {
               transition={{ duration: 0.4 }}
               className="card p-6"
             >
-              <div className="text-sm text-gray-500">{item.dates}</div>
+              <div className="text-base text-gray-500">{item.dates}</div>
               <div className="mt-1 font-semibold">{item.title}</div>
-              <div className="text-sm">{item.company}</div>
+              <div className="text-base">{item.company}</div>
               {!!item.points?.length && (
-                <ul className="mt-3 list-disc pl-5 text-sm space-y-1">
+                <ul className="mt-3 list-disc pl-5 text-base space-y-1">
                   {item.points.map((p, idx) => (
                     <li key={idx}>{p}</li>
                   ))}
@@ -40,7 +40,7 @@ export default function SectionResume() {
 
       {/* EDUCATION */}
       <div className="mt-16">
-        <h3 className="text-2xl font-semibold mb-6">Education</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-center">Education</h3>
         <div className="grid lg:grid-cols-2 gap-10">
           {education.map((ed, i) => {
             // Split "Major:" and "Grade:" out of the bullets if the data array contains them.
@@ -63,13 +63,13 @@ export default function SectionResume() {
                 transition={{ duration: 0.4 }}
                 className="card p-6"
               >
-                <div className="text-sm text-gray-500">{ed.dates}</div>
+                <div className="text-base text-gray-500">{ed.dates}</div>
                 <div className="mt-1 font-semibold">{ed.degree}</div>
-                <div className="text-sm">{ed.school}</div>
+                <div className="text-base">{ed.school}</div>
 
                 {/* Metadata lines (no bullets) */}
                 {!!meta.length && (
-                  <div className="mt-3 space-y-1 text-sm">
+                  <div className="mt-3 space-y-1 text-base">
                     {meta.map((m, idx) => {
                       const [label, ...restText] = m.split(':');
                       return (
@@ -84,7 +84,7 @@ export default function SectionResume() {
 
                 {/* Bulleted list for the rest */}
                 {!!rest.length && (
-                  <ul className="mt-3 list-disc pl-5 text-sm space-y-1">
+                  <ul className="mt-3 list-disc pl-5 text-base space-y-1">
                     {rest.map((p, idx) => (
                       <li key={idx}>{p}</li>
                     ))}
@@ -97,7 +97,7 @@ export default function SectionResume() {
 
         <div className="mt-6 flex justify-center">
           <a href="/updatedresume.pdf" className="btn btn-primary">
-            Download CV
+            Download Resume
           </a>
         </div>
       </div>

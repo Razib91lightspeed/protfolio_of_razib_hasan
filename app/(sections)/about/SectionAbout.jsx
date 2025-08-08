@@ -21,7 +21,7 @@ import Counter from '../../../components/Counter'; // keep your relative import
            <p className="mt-3 text-gray-600 dark:text-gray-300">
              I believe technology should enhance quality of life. I enjoy working with teams to ship impactful products.
            </p>
-           <ul className="mt-6 space-y-2 text-sm">
+           <ul className="mt-6 space-y-2 text-base">
              <li>🔍 <b>Profile:</b> Machine Learning, Data Science & Analytics</li>
              <li>🌐 <b>Domain:</b> Computer Sciences & Software Engineering</li>
              <li>🎓 <b>Education:</b> Bachelor of Engineering</li>

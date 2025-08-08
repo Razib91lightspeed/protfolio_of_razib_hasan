@@ -16,7 +16,7 @@ export default function SectionHero() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center justify-between md:hidden mb-4">
-              <span className="text-brand text-sm">Hello!</span>
+              <span className="text-brand text-base">Hello!</span>
               <ThemeToggle />
             </div>
 

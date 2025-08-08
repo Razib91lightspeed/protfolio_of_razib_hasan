@@ -8,8 +8,8 @@ export default function ProjectCard({ project }) {
       </div>
       <div className="p-5">
         <h3 className="font-semibold">{project.name}</h3>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">{project.description}</p>
-        <div className="mt-4 flex gap-3 text-sm">
+        <p className="mt-2 text-base text-gray-600 dark:text-gray-300 line-clamp-3">{project.description}</p>
+        <div className="mt-4 flex gap-3 text-base">
           <span className="px-2 py-1 rounded bg-white/10">GitHub</span>
           {project.homepage ? <span className="px-2 py-1 rounded bg-white/10">Demo</span> : null}
         </div>

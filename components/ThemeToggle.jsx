@@ -22,7 +22,7 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button onClick={toggle} className="ml-2 rounded-lg border border-white/10 px-3 py-2 text-sm" aria-label="Toggle Theme">
+    <button onClick={toggle} className="ml-2 rounded-lg border border-white/10 px-3 py-2 text-base" aria-label="Toggle Theme">
       {dark ? '☾' : '☀'}
     </button>
   );

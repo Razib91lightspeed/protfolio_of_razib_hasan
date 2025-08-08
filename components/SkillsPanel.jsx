@@ -31,7 +31,7 @@ export default function SkillsPanel() {
         </div>
 
         {/* Profile text */}
-        <div className="text-sm leading-6">
+        <div className="text-base leading-6">
           <div><span className="text-gray-500">Name:</span> Razib Hasan</div>
           <div><span className="text-gray-500">Job Role:</span> Software Engineer</div>
           <div><span className="text-gray-500">Experience:</span> 1 Years 3 Months</div>

@@ -25,18 +25,18 @@ export default function SectionContact() {
           <input name="subject" placeholder="Subject" required className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none" />
           <textarea name="message" rows="5" placeholder="Message" required className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 outline-none" />
           <button className="btn btn-primary" type="submit">Send Message</button>
-          {status && <div className="text-sm text-gray-500">{status}</div>}
+          {status && <div className="text-base text-gray-500">{status}</div>}
         </form>
       </div>
 
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-        <div className="card p-6"><div className="text-sm text-gray-500">Address</div><div>Ruskontie 55, 33710 Tampere, Finland</div></div>
-        <div className="card p-6"><div className="text-sm text-gray-500">Phone</div><a className="link" href="tel:+358407692735">+358 40 769 2735</a></div>
-        <div className="card p-6"><div className="text-sm text-gray-500">Email</div><a className="link" href="mailto:razib.hasan2@outlook.com">razib.hasan2@outlook.com</a></div>
-        <div className="card p-6"><div className="text-sm text-gray-500">Resume</div><a className="link" href="/updatedresume.pdf">Download</a></div>
+        <div className="card p-6"><div className="text-base text-gray-500">Address</div><div>Ruskontie 55, 33710 Tampere, Finland</div></div>
+        <div className="card p-6"><div className="text-base text-gray-500">Phone</div><a className="link" href="tel:+358407692735">+358 40 769 2735</a></div>
+        <div className="card p-6"><div className="text-base text-gray-500">Email</div><a className="link" href="mailto:razib.hasan2@outlook.com">razib.hasan2@outlook.com</a></div>
+        <div className="card p-6"><div className="text-base text-gray-500">Resume</div><a className="link" href="/updatedresume.pdf">Download</a></div>
       </div>
 
-      <ul className="mt-10 flex items-center justify-center gap-5 text-sm">
+      <ul className="mt-10 flex items-center justify-center gap-5 text-base">
         <li><a className="link" href="https://www.youtube.com/channel/UCXXMUHx9qV_LtC4k6yC7IQg">YouTube</a></li>
         <li><a className="link" href="https://www.linkedin.com/in/razibhasan2/">LinkedIn</a></li>
         <li><a className="link" href="https://twitter.com/@RazibHa28487029">Twitter</a></li>
