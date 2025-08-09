@@ -1,9 +1,8 @@
  'use client';
 import Image from 'next/image';
- import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import SkillsPanel from '../../../components/SkillsPanel';
-import Counter from '../../../components/Counter'; // keep your relative import
-
+import Counter from '../../../components/Counter'; 
  export default function SectionAbout() {
    return (
      <section id="about" className="section py-20">

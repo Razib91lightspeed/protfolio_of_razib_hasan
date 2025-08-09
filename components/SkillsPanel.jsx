@@ -18,17 +18,18 @@ export default function SkillsPanel() {
     <aside className="card p-6 lg:sticky lg:top-24">
       {/* Profile */}
       <div className="flex items-center gap-6">
-        {/* Bigger square image */}
-        <div className="relative !w-32 !h-32 shrink-0 overflow-hidden rounded-lg shadow-lg">
-          <Image
-            src="/images/about-me.png"
-            alt="Razib Hasan"
-            fill
-            className="object-cover"
-            sizes="128px"
-            priority
-          />
-        </div>
+       {/* Bigger square image */}
+<div className="relative !w-32 !h-32 shrink-0 overflow-hidden rounded-lg shadow-lg">
+  <Image
+    src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/about-me.png`}
+    alt="Razib Hasan"
+    fill
+    className="object-cover"
+    sizes="128px"
+    priority
+  />
+</div>
+
 
         {/* Profile text */}
         <div className="text-base leading-6">
