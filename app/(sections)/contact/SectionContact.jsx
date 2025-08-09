@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 export default function SectionContact() {
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState(null);
 
   // ✅ prefix for GitHub Pages subpath
   const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
