@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SkillsPanel from '../../../components/SkillsPanel';
-import Counter from '../../../components/Counter'; 
+import Counter from '../../../components/Counter';
  export default function SectionAbout() {
    return (
      <section id="about" className="section py-20">
@@ -22,7 +22,7 @@ import Counter from '../../../components/Counter';
            </p>
            <ul className="mt-6 space-y-2 text-base">
              <li>🔍 <b>Profile:</b> Machine Learning, Data Science & Analytics</li>
-             <li>🌐 <b>Domain:</b> Computer Sciences & Software Engineering</li>
+             <li>🌐 <b>Domain:</b> Computer Sciences, Embedded System & Software Engineering</li>
              <li>🎓 <b>Education:</b> Bachelor of Engineering</li>
              <li>🌍 <b>Languages:</b> English, Finnish, Bangla, Hindi, Malay</li>
              <li>📊 <b>BI:</b> Power BI, Looker, Tableau</li>
