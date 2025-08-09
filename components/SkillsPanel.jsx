@@ -35,7 +35,7 @@ export default function SkillsPanel() {
         <div className="text-base leading-6">
           <div><span className="text-gray-500">Name:</span> Razib Hasan</div>
           <div><span className="text-gray-500">Job Role:</span> Software Engineer</div>
-          <div><span className="text-gray-500">Experience:</span> 1 Years 3 Months</div>
+          <div><span className="text-gray-500">Experience:</span> 2 Years 3 Months</div>
           <div><span className="text-gray-500">Address:</span> Ruskontie 55, 33710, Tampere, Finland</div>
         </div>
       </div>
