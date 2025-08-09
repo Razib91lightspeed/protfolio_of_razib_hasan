@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Cursor bug */}
-        <MouseBug size={24} />  {/* 👈 render it here */}
+       <MouseBug size={80} />  {/* 👈 render it here */}
 
         <Navbar />
         <main>{children}</main>
