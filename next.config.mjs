@@ -1,7 +1,16 @@
-export default {
+/** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+const basePath = isProd ? '/protfolio_of_razib_hasan' : '';
+
+const nextConfig = {
   reactStrictMode: true,
-  images: { unoptimized: true },
   output: 'export',
-  basePath: '/protfolio_of_razib_hasan',
-  assetPrefix: '/protfolio_of_razib_hasan/',
+  images: { unoptimized: true },
+  basePath,
+  assetPrefix: basePath + '/',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath, // use this in components for manual URLs
+  },
 };
+
+export default nextConfig;
