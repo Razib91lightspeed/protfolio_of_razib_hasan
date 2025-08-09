@@ -96,7 +96,7 @@ export default function SectionResume() {
         </div>
 
         <div className="mt-6 flex justify-center">
-          <a href="/updatedresume.pdf" className="btn btn-primary">
+          <a href="updatedresume.pdf" className="btn btn-primary">
             Download Resume
           </a>
         </div>
