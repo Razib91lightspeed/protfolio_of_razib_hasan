@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import ProjectCard from '../../../components/ProjectCard';
-import { getRepos } from '../../../lib/github';
 
 const LOCAL_PROJECTS = [
   {
@@ -33,6 +32,20 @@ const LOCAL_PROJECTS = [
     image: '/images/proj_4.jpg',
   },
   {
+    name: 'Snake_Game',
+    description: 'Snake Game (JavaScript, React)',
+    html_url: 'https://github.com/Razib91lightspeed/snake-game',
+    homepage: '',
+    image: '/images/snake_game.png',
+  },
+   {
+    name: 'Pot_Hole',
+    description: 'Pothole Detection App (Swift, iOS)',
+    html_url: 'https://github.com/Razib91lightspeed/pothole_app',
+    homepage: '',
+    image: '/images/pot_hole.png',
+  },
+  {
     name: 'Smart_House',
     description: 'Smart Home Control System (Qt)',
     html_url: 'https://github.com/Razib91lightspeed/Smart_House',
@@ -42,56 +55,35 @@ const LOCAL_PROJECTS = [
 ];
 
 export default function SectionProjects() {
-  const [repos, setRepos] = useState(LOCAL_PROJECTS);
-  const [loading, setLoading] = useState(false);
   const [q, setQ] = useState('');
-  const [error, setError] = useState(null);
   const debounceRef = useRef(null);
+  const [debouncedQ, setDebouncedQ] = useState('');
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const r = await getRepos().catch(() => []);
-        if (mounted && Array.isArray(r) && r.length) {
-          // Dedupe by repo name in case local list overlaps remote
-          const names = new Set();
-          const merged = [...r, ...LOCAL_PROJECTS].filter(p => {
-            const n = (p.name || '').toLowerCase();
-            if (names.has(n)) return false;
-            names.add(n);
-            return true;
-          });
-          setRepos(merged);
-        }
-      } catch (e) {
-        // stay on LOCAL_PROJECTS and show a soft message
-        setError('GitHub rate limit reached or network error — showing local projects.');
-      } finally {
-        mounted && setLoading(false);
-      }
-    })();
-    return () => { mounted = false; };
+  // Only keep projects with custom image & link
+  const projects = useMemo(() => {
+    return LOCAL_PROJECTS.filter(
+      p => p.image && p.html_url && p.image.startsWith('/images/')
+    );
   }, []);
 
-  // Debounce the search input for nicer UX
-  const [debouncedQ, setDebouncedQ] = useState('');
-  useEffect(() => {
+  // Debounce search
+  const handleChange = (e) => {
+    setQ(e.target.value);
     clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => setDebouncedQ(q), 150);
-    return () => clearTimeout(debounceRef.current);
-  }, [q]);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedQ(e.target.value);
+    }, 150);
+  };
 
   const filtered = useMemo(() => {
     const query = debouncedQ.trim().toLowerCase();
-    if (!query) return repos;
-    return repos.filter((p) =>
-      (p.name || '').toLowerCase().includes(query) ||
-      (p.description || '').toLowerCase().includes(query)
+    if (!query) return projects;
+    return projects.filter(
+      (p) =>
+        (p.name || '').toLowerCase().includes(query) ||
+        (p.description || '').toLowerCase().includes(query)
     );
-  }, [debouncedQ, repos]);
+  }, [debouncedQ, projects]);
 
   return (
     <section id="projects" className="section py-20">
@@ -101,20 +93,15 @@ export default function SectionProjects() {
           <p className="text-gray-600 dark:text-gray-300">
             Below are some of my notable projects.
           </p>
-          {error && <p className="mt-2 text-sm text-amber-400">{error}</p>}
         </div>
         <input
           value={q}
-          onChange={(e) => setQ(e.target.value)}
+          onChange={handleChange}
           placeholder="Search projects…"
           aria-label="Search projects"
           className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 outline-none"
         />
       </div>
-
-      {loading && (
-        <div className="mt-8 text-sm text-gray-500">Loading from GitHub…</div>
-      )}
 
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((p) => (
