@@ -26,3 +26,107 @@ html { scroll-behavior: smooth; }
 
 /* Simple link style */
 .link { @apply underline decoration-brand underline-offset-4 hover:decoration-brand-dark; }
+/* ---- Fancy Skills panel utilities ---- */
+
+/* chips/pills */
+.chip { @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-gray-200; }
+
+/* small badges */
+.badge { @apply inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] tracking-wide text-gray-300; }
+
+/* progress track & animated fill */
+.progress { @apply h-2.5 w-full rounded-full bg-white/10 overflow-hidden; }
+.progress-fill {
+  @apply block h-full rounded-full from-brand to-amber-300 bg-gradient-to-r shadow-[0_0_14px_rgba(255,189,57,.35)];
+  width: 0; /* start collapsed, will be set via inline style and animated */
+  animation: growBar 1s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.bar-in { animation: growBar 1s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes growBar { to { width: var(--tw-grow, 100%); } }
+
+/* tiny glowing dots */
+.spark {
+  @apply absolute h-1.5 w-1.5 rounded-full bg-brand/80;
+  box-shadow: 0 0 18px rgba(255,189,57,.7), 0 0 4px rgba(255,189,57,.9) inset;
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { transform: scale(.8); opacity: .55; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ===== Creative Gradient Skill Meters ===== */
+
+.meter {
+  @apply relative h-3.5 w-full rounded-full overflow-hidden;
+  /* soft inner glass */
+  background: radial-gradient(120% 100% at 10% 0%, rgba(255,255,255,.08), rgba(255,255,255,0) 55%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.25),
+    0 8px 22px rgba(255,189,57,.08);
+}
+
+/* segmented grid underlay */
+.meter-track {
+  @apply absolute inset-0 opacity-60;
+  background:
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,.08) 0 8px,
+      rgba(255,255,255,0) 8px 16px
+    ),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.25));
+}
+
+/* the fill with glow + animated shimmer */
+.meter-fill {
+  @apply absolute left-0 top-0 h-full rounded-full;
+  background:
+    linear-gradient(90deg, rgba(255,189,57,.0), rgba(255,189,57,.35) 35%, rgba(255,189,57,.0)),
+    linear-gradient(90deg, #ffc63b, #ffbd39 40%, #ffd36e 70%, #ffd36e);
+  box-shadow:
+    0 0 16px rgba(255,189,57,.55),
+    0 0 32px rgba(255,189,57,.35),
+    inset 0 0 10px rgba(255,255,255,.25);
+  overflow: hidden;
+}
+
+/* shimmer sweep */
+.meter-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.22) 30%, transparent 60%);
+  transform: translateX(-100%);
+  animation: meterShine 2.8s ease-in-out infinite;
+}
+@keyframes meterShine {
+  0%   { transform: translateX(-100%) }
+  55%  { transform: translateX(15%) }
+  100% { transform: translateX(110%) }
+}
+
+/* glowing end dot */
+.meter-dot {
+  @apply absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full;
+  background: radial-gradient(circle at 40% 40%, #fff 0 25%, #ffbd39 26% 60%, rgba(255,189,57,.0) 61%);
+  box-shadow:
+    0 0 10px rgba(255,189,57,.8),
+    0 0 22px rgba(255,189,57,.4);
+  animation: dotPulse 1.9s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { transform: translateY(-50%) scale(.92); opacity:.9 }
+  50%      { transform: translateY(-50%) scale(1.06); opacity:1 }
+}
+
+/* % bubble */
+.meter-bubble {
+  @apply absolute -top-7 text-[11px] px-1.5 py-[2px] rounded-md text-black font-semibold;
+  background: linear-gradient(180deg, #ffd36e, #ffbd39);
+  box-shadow: 0 4px 10px rgba(255,189,57,.35);
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
