@@ -130,3 +130,47 @@ html { scroll-behavior: smooth; }
   white-space: nowrap;
 }
 
+
+/* ===== About fancy helpers ===== */
+
+.soft-card { @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl; }
+.soft-subcard { @apply rounded-xl border border-white/10 bg-white/5; }
+
+/* gradient ring around avatar */
+.fancy-ring { position: relative; display: inline-block; }
+.fancy-ring::before {
+  content: "";
+  position: absolute; inset: -6px;
+  border-radius: 18px;
+  background: conic-gradient(from 200deg, #ffbd39, #ffd36e 30%, #ffbd39 60%, #fff1b0 85%, #ffbd39);
+  filter: blur(6px);
+  opacity: .65;
+  z-index: -1;
+}
+
+/* facts line */
+.fact { @apply flex gap-2; }
+.fact .label { @apply text-gray-500 min-w-[90px]; }
+
+/* list icon size/tint */
+.li-ico { @apply h-4 w-4 text-brand; }
+
+/* pills / CTAs */
+.chip {
+  @apply rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm hover:bg-white/10 transition;
+}
+.chip--brand {
+  @apply border-brand text-black bg-brand hover:bg-brand/90;
+}
+
+/* animated mini badges */
+.fancy-badge {
+  @apply rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs;
+  box-shadow: 0 8px 24px rgba(255,189,57,.08), inset 0 1px 0 rgba(255,255,255,.08);
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+@keyframes badgeFloat {
+  0%,100% { transform: translateY(0) }
+  50%     { transform: translateY(-2px) }
+}
+
