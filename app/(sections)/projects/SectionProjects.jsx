@@ -52,10 +52,15 @@ const LOCAL_PROJECTS = [
 function ProjectCard({ project }) {
   const imgSrc = project.image.startsWith('http') ? project.image : `${prefix}${project.image}`;
 
+  // Use object-contain for Snake Game and Pot Hole to show full image
+  const isSpecial = project.name === 'Snake Game' || project.name === 'Pot Hole';
+  const imgClass = isSpecial ? 'object-contain' : 'object-cover';
+  const imgHeight = isSpecial ? 'h-48 sm:h-56' : 'h-40 sm:h-48';
+
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="relative w-full h-40 sm:h-48 mb-4 rounded-xl overflow-hidden">
-        <Image src={imgSrc} alt={project.name} fill className="object-cover" />
+      <div className={`relative w-full mb-4 rounded-xl overflow-hidden ${imgHeight}`}>
+        <Image src={imgSrc} alt={project.name} fill className={`${imgClass} transition`} />
       </div>
       <h3 className="font-semibold text-lg break-words leading-snug">{project.name}</h3>
       <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm break-words line-clamp-3">
@@ -72,6 +77,7 @@ function ProjectCard({ project }) {
     </div>
   );
 }
+
 
 export default function SectionProjects() {
   const [q, setQ] = useState('');
