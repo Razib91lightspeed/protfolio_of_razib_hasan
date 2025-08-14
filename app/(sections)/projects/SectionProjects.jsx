@@ -38,7 +38,7 @@ const LOCAL_PROJECTS = [
     homepage: '',
     image: '/images/snake_game.png',
   },
-   {
+  {
     name: 'Pot_Hole',
     description: 'Pothole Detection App (Swift, iOS)',
     html_url: 'https://github.com/Razib91lightspeed/pothole_app',
@@ -59,14 +59,12 @@ export default function SectionProjects() {
   const debounceRef = useRef(null);
   const [debouncedQ, setDebouncedQ] = useState('');
 
-  // Only keep projects with custom image & link
   const projects = useMemo(() => {
     return LOCAL_PROJECTS.filter(
       p => p.image && p.html_url && p.image.startsWith('/images/')
     );
   }, []);
 
-  // Debounce search
   const handleChange = (e) => {
     setQ(e.target.value);
     clearTimeout(debounceRef.current);
@@ -87,10 +85,11 @@ export default function SectionProjects() {
 
   return (
     <section id="projects" className="section py-20">
-      <div className="flex items-end justify-between gap-4">
+      {/* Header + Search */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
         <div>
           <h2 className="text-3xl font-bold">Projects</h2>
-          <p className="text-gray-600 dark:text-gray-300">
+          <p className="text-gray-600 dark:text-gray-300 mt-1">
             Below are some of my notable projects.
           </p>
         </div>
@@ -99,16 +98,23 @@ export default function SectionProjects() {
           onChange={handleChange}
           placeholder="Search projects…"
           aria-label="Search projects"
-          className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 outline-none"
+          className="rounded-xl border border-white/10 bg-white/10 px-4 py-2 outline-none focus:ring-2 focus:ring-yellow-400"
         />
       </div>
 
+      {/* Project Grid */}
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((p) => (
-          <ProjectCard key={`${p.html_url}-${p.name}`} project={p} />
+          <div
+            key={`${p.html_url}-${p.name}`}
+            className="rounded-2xl border border-yellow-300/20 bg-gradient-to-b from-yellow-400/10 to-yellow-300/5 p-4 shadow-lg hover:shadow-yellow-400/30 hover:-translate-y-1 transition"
+          >
+            <ProjectCard project={p} />
+          </div>
         ))}
       </div>
 
+      {/* GitHub link */}
       <div className="mt-10 text-center">
         <a
           href="https://github.com/Razib91lightspeed"

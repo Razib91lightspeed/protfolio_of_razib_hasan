@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-// GitHub Pages base path prefix (empty locally)
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const certs = [
@@ -25,7 +24,9 @@ export default function SectionCertifications() {
   return (
     <section id="certification" className="section py-20">
       <h2 className="text-3xl font-bold text-center">Certifications</h2>
-      <p className="mt-2 text-center text-gray-600 dark:text-gray-300">A selection of badges & courses</p>
+      <p className="mt-2 text-center text-gray-600 dark:text-gray-300">
+        A selection of badges & courses
+      </p>
       <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {certs.map((c, i) => (
           <motion.a
@@ -34,12 +35,25 @@ export default function SectionCertifications() {
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -4 }}
-            className="card p-4 flex flex-col items-center text-center"
+            className="
+              relative overflow-hidden rounded-2xl
+              border border-yellow-300/20
+              bg-gradient-to-b from-yellow-400/10 to-yellow-300/5
+              shadow-lg
+              hover:shadow-yellow-400/30 hover:-translate-y-1
+              transition
+            "
           >
-            <div className="relative w-[180px] h-[140px]">
-              <Image src={c.img} alt={c.title} fill className="object-contain" />
+            {/* Soft glow accents */}
+            <div className="pointer-events-none absolute -top-14 -right-16 h-40 w-40 rounded-full bg-yellow-300/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-16 -left-20 h-40 w-40 rounded-full bg-yellow-300/20 blur-3xl" />
+
+            <div className="p-4 flex flex-col items-center text-center">
+              <div className="relative w-[160px] h-[120px]">
+                <Image src={c.img} alt={c.title} fill className="object-contain" />
+              </div>
+              <div className="mt-3 font-medium">{c.title}</div>
             </div>
-            <div className="mt-3 font-medium">{c.title}</div>
           </motion.a>
         ))}
       </div>
