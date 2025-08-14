@@ -7,19 +7,17 @@ import SkillsPanel from '../../../components/SkillsPanel';
 import Counter from '../../../components/Counter';
 
 export default function SectionAbout() {
-  // Use this for GitHub Pages (or any basePath) so images always load
   const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   return (
     <section id="about" className="section py-20">
-      {/* 50 / 50 layout on large screens */}
       <div className="grid lg:grid-cols-2 gap-10 items-start">
-        {/* LEFT: Profile + Skill bars */}
+        {/* LEFT: Skills */}
         <div>
           <SkillsPanel />
         </div>
 
-        {/* RIGHT: Fancy About block */}
+        {/* RIGHT: About Me block */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -27,22 +25,26 @@ export default function SectionAbout() {
           transition={{ duration: 0.5 }}
           className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-6 md:p-8 shadow-xl"
         >
-          {/* soft glow accents */}
+          {/* Soft glow accents */}
           <div className="pointer-events-none absolute -top-20 -right-16 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
 
-          <div className="flex items-start gap-4">
-            {/* avatar */}
-            <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/20">
+          {/* Avatar + Text */}
+          <div className="flex items-start gap-6">
+            {/* Avatar */}
+            <div className="w-40 shrink-0">
               <Image
                 src={`${base}/images/me.png`}
                 alt="Razib Hasan"
-                fill
-                className="object-cover"
+                width={160}
+                height={160}
+                className="object-contain"
+                priority
               />
             </div>
 
-            <div>
+            {/* Text */}
+            <div className="flex-1">
               <h2 className="text-3xl font-bold">About Me</h2>
               <p className="mt-2 text-gray-300">
                 I am a passionate and results‑driven software engineer with strong foundations in
@@ -53,7 +55,7 @@ export default function SectionAbout() {
             </div>
           </div>
 
-          {/* highlight cards */}
+          {/* Highlight cards */}
           <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <InfoCard
               icon={<Brain className="h-5 w-5" />}
@@ -90,7 +92,7 @@ export default function SectionAbout() {
         </motion.div>
       </div>
 
-      {/* Counters row */}
+      {/* Counters */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
         <Counter label="Achievements" value={20} />
         <Counter label="Projects" value={42} />
