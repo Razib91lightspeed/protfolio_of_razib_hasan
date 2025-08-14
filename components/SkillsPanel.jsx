@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { Briefcase, MapPin, Award } from 'lucide-react';
 
+const base = '/images'; // <-- prefix for images
+
 const skills = [
   { label: 'Programming Languages: Java, C++, Python, JavaScript, Swift', value: 88 },
   { label: 'Front-End: Qt, JavaFX, React, Vue, Tailwind CSS', value: 82 },
@@ -11,7 +13,7 @@ const skills = [
   { label: 'DevOps & Tools: Git, Docker', value: 92 },
   { label: 'Cloud: AWS, Azure', value: 84 },
   { label: 'Mobile: Flutter, React Native, iOS (Swift)', value: 81 },
-  { label: 'ML & Embedded (Raspberry Pi, Arduino, Microcontroller, MQTT, Lider, OpAmp,RTOS, LTspice, MatLab, Sensors)', value: 80 },
+  { label: 'ML & Embedded (Raspberry Pi, Arduino, Microcontroller, MQTT, Lider, OpAmp, RTOS, LTspice, MatLab, Sensors)', value: 80 },
   { label: 'OS: macOS, Windows, Linux', value: 98 },
 ];
 
@@ -64,12 +66,12 @@ export default function SkillsPanel() {
 
         {/* header */}
         <div className="flex items-center gap-4 p-6 md:p-7 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
-          <div className="relative w-24 h-24 shrink-0 rounded-2xl overflow-hidden ring-2 ring-brand/70 shadow-xl">
+          <div className="relative w-32 h-32 shrink-0 rounded-2xl overflow-hidden ring-2 ring-brand/70 shadow-xl">
             <Image
-              src="/images/about-me.png"
+              src={`${base}/about-me.png`} // <-- uses prefix
               alt="Razib Hasan"
               fill
-              sizes="96px"
+              sizes="128px"
               className="object-cover"
               priority
             />
@@ -110,23 +112,22 @@ export default function SkillsPanel() {
                   </span>
                 </div>
 
-{/* Fancy meter */}
-<div className="meter">
-  <div className="meter-track" />
-  <div className="meter-fill" style={{ width: `${s.value}%` }} />
-  <div
-    className="meter-dot"
-    style={{ left: `calc(${s.value}% - 7px)` }}
-    aria-hidden
-  />
-  <div
-    className="meter-bubble"
-    style={{ left: `calc(${s.value}% - 18px)` }}
-  >
-    {s.value}%
-  </div>
-</div>
-
+                {/* Fancy meter */}
+                <div className="meter">
+                  <div className="meter-track" />
+                  <div className="meter-fill" style={{ width: `${s.value}%` }} />
+                  <div
+                    className="meter-dot"
+                    style={{ left: `calc(${s.value}% - 7px)` }}
+                    aria-hidden
+                  />
+                  <div
+                    className="meter-bubble"
+                    style={{ left: `calc(${s.value}% - 18px)` }}
+                  >
+                    {s.value}%
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
