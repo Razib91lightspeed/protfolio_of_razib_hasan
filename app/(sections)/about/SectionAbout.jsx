@@ -34,22 +34,21 @@ export default function SectionAbout() {
           <div className="flex items-start gap-4">
             {/* avatar */}
             <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-xl ring-1 ring-white/20">
-  <Image
-    src={`${base}/images/me.png`}
-    alt="Razib Hasan"
-    fill
-    className="object-cover"
-  />
-</div>
-
+              <Image
+                src={`${base}/images/me.png`}
+                alt="Razib Hasan"
+                fill
+                className="object-cover"
+              />
+            </div>
 
             <div>
               <h2 className="text-3xl font-bold">About Me</h2>
               <p className="mt-2 text-gray-300">
                 I am a passionate and results‑driven software engineer with strong foundations in
                 automation, embedded systems, IoT, cloud computing, and data‑driven ML projects.
-                I believe technology should enhance quality of life. I enjoy working with teams to
-                ship impactful products.
+                I believe technology should enhance quality of life. I enjoy collaborating with teams
+                to ship impactful products.
               </p>
             </div>
           </div>
@@ -59,17 +58,17 @@ export default function SectionAbout() {
             <InfoCard
               icon={<Brain className="h-5 w-5" />}
               title="Profile"
-              body="Machine Learning, Embedded System, Data Science & Analytics"
+              body="Machine Learning, Embedded Systems, Data Science & Analytics"
             />
             <InfoCard
               icon={<Globe2 className="h-5 w-5" />}
-              title="Domain"
-              body="Computer Sciences, Electronics & Software Engineering"
+              title="Expertise"
+              body="Computer Science, Electronics, Software Engineering"
             />
             <InfoCard
               icon={<GraduationCap className="h-5 w-5" />}
               title="Education"
-              body="Master's Degree in Computer Sciences"
+              body="Master's Degree in Computer Science"
               body1="Bachelor of Engineering"
             />
             <InfoCard
@@ -102,7 +101,7 @@ export default function SectionAbout() {
   );
 }
 
-function InfoCard({ icon, title, body }) {
+function InfoCard({ icon, title, body, body1 }) {
   return (
     <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-4 hover:bg-white/[0.06] transition">
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition">
@@ -113,6 +112,7 @@ function InfoCard({ icon, title, body }) {
         <span className="font-semibold">{title}</span>
       </div>
       <p className="mt-2 text-sm text-gray-300">{body}</p>
+      {body1 && <p className="mt-1 text-sm text-gray-300">{body1}</p>}
     </div>
   );
 }
