@@ -4,12 +4,9 @@ export default function ProjectCard({ project }) {
   const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   const imgSrc = project?.image
-    ? (project.image.startsWith('http')
-        ? project.image
-        : `${prefix}${project.image}`)
+    ? (project.image.startsWith('http') ? project.image : `${prefix}${project.image}`)
     : `${prefix}/images/proj_1.jpg`;
 
-  // ✅ Special styles for Snake_Game and Pot_Hole
   const isSpecialProject = project.name === 'Snake_Game' || project.name === 'Pot_Hole';
   const imageContainerClasses = isSpecialProject ? 'relative w-full h-64' : 'relative w-full h-48';
   const imageClasses = isSpecialProject
@@ -21,7 +18,7 @@ export default function ProjectCard({ project }) {
       href={project.html_url}
       target="_blank"
       rel="noreferrer"
-      className="card overflow-hidden group"
+      className="group rounded-2xl border border-yellow-300/20 bg-gradient-to-b from-yellow-400/10 to-yellow-300/5 shadow-lg hover:shadow-yellow-400/30 hover:-translate-y-1 transition overflow-hidden"
     >
       <div className={imageContainerClasses}>
         <Image
@@ -34,13 +31,16 @@ export default function ProjectCard({ project }) {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold">{project.name}</h3>
-        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+        {/* Title: wrap long words */}
+        <h3 className="font-semibold text-lg break-words leading-snug">
+          {project.name.replace(/_/g, ' ')}
+        </h3>
+        <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-3 break-words">
           {project.description}
         </p>
-        <div className="mt-4 flex gap-3 text-sm">
+        <div className="mt-4 flex gap-3 text-sm flex-wrap">
           <span className="px-2 py-1 rounded bg-white/10">GitHub</span>
-          {project.homepage ? <span className="px-2 py-1 rounded bg-white/10">Demo</span> : null}
+          {project.homepage && <span className="px-2 py-1 rounded bg-white/10">Demo</span>}
         </div>
       </div>
     </a>

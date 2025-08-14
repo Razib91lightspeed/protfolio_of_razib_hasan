@@ -1,76 +1,83 @@
 'use client';
 import { useMemo, useRef, useState } from 'react';
-import ProjectCard from '../../../components/ProjectCard';
+import Image from 'next/image';
 
 const LOCAL_PROJECTS = [
   {
-    name: 'Automated_Drone_Delivery_System_With_SpringBoot',
+    name: 'Automated Drone Delivery with Spring Boot',
     description: 'Distributed pizza/drone delivery system with Spring Boot microservices',
     html_url: 'https://github.com/Razib91lightspeed/Automated_Drone_Delivery_System_With_SpringBoot',
-    homepage: '',
     image: '/images/proj_1.jpg',
   },
   {
-    name: 'Traffic-Sign-Classification-using-CNN',
+    name: 'Traffic Sign Classification Using CNN',
     description: 'Deep learning classifier for traffic signs (CNN)',
     html_url: 'https://github.com/Razib91lightspeed/Traffic-Sign-Classification-using-CNN',
-    homepage: '',
     image: '/images/proj_2.jpg',
   },
   {
-    name: 'House-Price-Prediction-Model',
+    name: 'House Price Prediction Model',
     description: 'Finland house price prediction with multiple regressors',
     html_url: 'https://github.com/Razib91lightspeed/House-Price-Prediction-Model',
-    homepage: '',
     image: '/images/proj_3.jpg',
   },
   {
-    name: 'Autonomous_Vehicle',
+    name: 'Autonomous Self Driving Vehicle',
     description: 'Self driving car (Embedded/IoT) – Arduino + sensors',
     html_url: 'https://github.com/Razib91lightspeed/Autonomous_Vehicle',
-    homepage: '',
     image: '/images/proj_4.jpg',
   },
   {
-    name: 'Snake_Game',
+    name: 'Snake Game',
     description: 'Snake Game (JavaScript, React)',
     html_url: 'https://github.com/Razib91lightspeed/snake-game',
-    homepage: '',
     image: '/images/snake_game.png',
   },
   {
-    name: 'Pot_Hole',
+    name: 'Pot Hole App',
     description: 'Pothole Detection App (Swift, iOS)',
     html_url: 'https://github.com/Razib91lightspeed/pothole_app',
-    homepage: '',
     image: '/images/pot_hole.png',
   },
   {
-    name: 'Smart_House',
+    name: 'Smart House (IoT)',
     description: 'Smart Home Control System (Qt)',
     html_url: 'https://github.com/Razib91lightspeed/Smart_House',
-    homepage: '',
     image: '/images/proj_5.jpg',
   },
 ];
+
+function ProjectCard({ project }) {
+  return (
+    <div className="flex flex-col items-center text-center">
+      <div className="relative w-full h-40 sm:h-48 mb-4">
+        <Image src={project.image} alt={project.name} fill className="object-cover rounded-xl" />
+      </div>
+      <h3 className="font-semibold text-lg break-words">{project.name}</h3>
+      <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">{project.description}</p>
+      <a
+        href={project.html_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-3 text-yellow-700 hover:underline text-sm"
+      >
+        View on GitHub
+      </a>
+    </div>
+  );
+}
 
 export default function SectionProjects() {
   const [q, setQ] = useState('');
   const debounceRef = useRef(null);
   const [debouncedQ, setDebouncedQ] = useState('');
 
-  const projects = useMemo(() => {
-    return LOCAL_PROJECTS.filter(
-      p => p.image && p.html_url && p.image.startsWith('/images/')
-    );
-  }, []);
+  const projects = useMemo(() => LOCAL_PROJECTS, []);
 
   const handleChange = (e) => {
     setQ(e.target.value);
     clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      setDebouncedQ(e.target.value);
-    }, 150);
+    debounceRef.current = setTimeout(() => setDebouncedQ(e.target.value), 150);
   };
 
   const filtered = useMemo(() => {
@@ -106,7 +113,7 @@ export default function SectionProjects() {
       <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((p) => (
           <div
-            key={`${p.html_url}-${p.name}`}
+            key={p.html_url}
             className="rounded-2xl border border-yellow-300/20 bg-gradient-to-b from-yellow-400/10 to-yellow-300/5 p-4 shadow-lg hover:shadow-yellow-400/30 hover:-translate-y-1 transition"
           >
             <ProjectCard project={p} />
