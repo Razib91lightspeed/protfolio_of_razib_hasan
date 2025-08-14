@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { Briefcase, MapPin, Award } from 'lucide-react';
 
-const base = '/images'; // <-- prefix for images
+const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const skills = [
   { label: 'Programming Languages: Java, C++, Python, JavaScript, Swift', value: 88 },
@@ -13,7 +13,7 @@ const skills = [
   { label: 'DevOps & Tools: Git, Docker', value: 92 },
   { label: 'Cloud: AWS, Azure', value: 84 },
   { label: 'Mobile: Flutter, React Native, iOS (Swift)', value: 81 },
-  { label: 'ML & Embedded (Raspberry Pi, Arduino, Microcontroller, MQTT, Lider, OpAmp, RTOS, LTspice, MatLab, Sensors)', value: 80 },
+  { label: 'ML & Embedded (Raspberry Pi, Arduino, Microcontroller, MQTT, LiDAR, OpAmp, RTOS, LTspice, MATLAB, Sensors)', value: 80 },
   { label: 'OS: macOS, Windows, Linux', value: 98 },
 ];
 
@@ -68,7 +68,7 @@ export default function SkillsPanel() {
         <div className="flex items-center gap-4 p-6 md:p-7 border-b border-white/10 bg-gradient-to-b from-white/5 to-transparent">
           <div className="relative w-32 h-32 shrink-0 rounded-2xl overflow-hidden ring-2 ring-brand/70 shadow-xl">
             <Image
-              src={`${base}/about-me.png`} // <-- uses prefix
+              src={`${base}/images/about-me.png`} // fixed with base path
               alt="Razib Hasan"
               fill
               sizes="128px"
@@ -113,7 +113,7 @@ export default function SkillsPanel() {
                 </div>
 
                 {/* Fancy meter */}
-                <div className="meter">
+                <div className="meter" data-bar>
                   <div className="meter-track" />
                   <div className="meter-fill" style={{ width: `${s.value}%` }} />
                   <div
