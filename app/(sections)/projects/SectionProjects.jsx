@@ -2,6 +2,8 @@
 import { useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 
+const prefix = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const LOCAL_PROJECTS = [
   {
     name: 'Automated Drone Delivery with Spring Boot',
@@ -48,13 +50,17 @@ const LOCAL_PROJECTS = [
 ];
 
 function ProjectCard({ project }) {
+  const imgSrc = project.image.startsWith('http') ? project.image : `${prefix}${project.image}`;
+
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="relative w-full h-40 sm:h-48 mb-4">
-        <Image src={project.image} alt={project.name} fill className="object-cover rounded-xl" />
+      <div className="relative w-full h-40 sm:h-48 mb-4 rounded-xl overflow-hidden">
+        <Image src={imgSrc} alt={project.name} fill className="object-cover" />
       </div>
-      <h3 className="font-semibold text-lg break-words">{project.name}</h3>
-      <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm">{project.description}</p>
+      <h3 className="font-semibold text-lg break-words leading-snug">{project.name}</h3>
+      <p className="mt-2 text-gray-600 dark:text-gray-300 text-sm break-words line-clamp-3">
+        {project.description}
+      </p>
       <a
         href={project.html_url}
         target="_blank"
