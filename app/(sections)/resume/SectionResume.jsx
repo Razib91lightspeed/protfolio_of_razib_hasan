@@ -41,24 +41,16 @@ export default function SectionResume() {
       <div className="mt-12">
         <h3 className="text-2xl font-semibold text-center">Experience</h3>
         <div className="mt-6 grid lg:grid-cols-2 gap-8">
-          {(Array.isArray(experience) ? experience : []).map((item, i) => (
+          {experience.map((item, i) => (
             <ResumeCard key={i}>
               <div className="text-base text-gray-500">{item.dates}</div>
               <div className="mt-1 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                <div className="font-semibold text-lg">{item.title}</div>
-                <div className="text-right sm:text-right flex flex-col items-end">
-                  <div className="text-base text-gray-300/90">{item.company}</div>
-                  {/* Added Location configuration with waving Finnish flag emoji */}
-                  {item.location && (
-                    <div className="text-xs text-gray-400 italic mt-0.5">
-                      {item.location} 🇫🇮
-                    </div>
-                  )}
-                </div>
+                <div className="font-semibold">{item.title}</div>
+                <div className="text-base text-gray-300/90">{item.company}</div>
               </div>
               <div className="mt-4 h-px bg-yellow-300/20" />
               {!!item.points?.length && (
-                <ul className="mt-4 list-disc pl-5 text-base space-y-1 text-gray-300/80">
+                <ul className="mt-4 list-disc pl-5 text-base space-y-1">
                   {item.points.map((p, idx) => (
                     <li key={idx}>{p}</li>
                   ))}
@@ -73,7 +65,7 @@ export default function SectionResume() {
       <div className="mt-16">
         <h3 className="text-2xl font-semibold text-center">Education</h3>
         <div className="mt-6 grid lg:grid-cols-2 gap-8">
-          {(Array.isArray(education) ? education : []).map((ed, i) => {
+          {education.map((ed, i) => {
             const meta = [];
             const rest = [];
             (ed.details || []).forEach((line) => {
@@ -85,16 +77,8 @@ export default function SectionResume() {
               <ResumeCard key={i}>
                 <div className="text-base text-gray-500">{ed.dates}</div>
                 <div className="mt-1 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                  <div className="font-semibold text-lg">{ed.degree}</div>
-                  <div className="text-right sm:text-right flex flex-col items-end">
-                    <div className="text-base text-gray-300/90">{ed.school}</div>
-                    {/* Added Location configuration with waving Finnish flag emoji */}
-                    {ed.location && (
-                      <div className="text-xs text-gray-400 italic mt-0.5">
-                        {ed.location} 🇫🇮
-                      </div>
-                    )}
-                  </div>
+                  <div className="font-semibold">{ed.degree}</div>
+                  <div className="text-base text-gray-300/90">{ed.school}</div>
                 </div>
                 {!!meta.length && (
                   <>
@@ -104,7 +88,7 @@ export default function SectionResume() {
                         const [label, ...restText] = m.split(':');
                         return (
                           <p key={idx}>
-                            <span className="font-medium text-yellow-400/90">{label.trim()}:</span>{' '}
+                            <span className="font-medium">{label.trim()}:</span>{' '}
                             {restText.join(':').trim()}
                           </p>
                         );
@@ -115,7 +99,7 @@ export default function SectionResume() {
                 {!!rest.length && (
                   <>
                     {!meta.length && <div className="mt-4 h-px bg-yellow-300/20" />}
-                    <ul className="mt-4 list-disc pl-5 text-base space-y-1 text-gray-300/80">
+                    <ul className="mt-4 list-disc pl-5 text-base space-y-1">
                       {rest.map((p, idx) => (
                         <li key={idx}>{p}</li>
                       ))}

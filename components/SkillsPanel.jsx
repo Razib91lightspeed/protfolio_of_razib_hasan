@@ -5,7 +5,7 @@ import { Briefcase, MapPin, Award } from 'lucide-react';
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-// Function to calculate experience dynamically from a start date (e.g., January 1, 2024)
+// Function to calculate experience dynamically from a start date
 function calculateExperience(startDateStr) {
   const start = new Date(startDateStr);
   const now = new Date();
@@ -18,7 +18,6 @@ function calculateExperience(startDateStr) {
     months += 12;
   }
 
-  // Handle case where current day is before start day of the month
   if (now.getDate() < start.getDate()) {
     months--;
     if (months < 0) {
@@ -52,7 +51,7 @@ const skills = [
 
 export default function SkillsPanel() {
   const cardRef = useRef(null);
-  const experienceString = calculateExperience('2024-01-01'); // Change this date if your career start date is different
+  const experienceString = calculateExperience('2024-01-01'); // Change this date if your start date was different
 
   // animate bars when the card scrolls into view
   useEffect(() => {
