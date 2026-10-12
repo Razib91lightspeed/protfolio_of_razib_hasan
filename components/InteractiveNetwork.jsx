@@ -1,7 +1,7 @@
 'use client';
 import { useCallback } from 'react';
-import Particles from 'react-tsparticles';
-import { loadSlim } from 'tsparticles-slim';
+import Particles, { initParticlesEngine } from '@tsparticles/react';
+import { loadSlim } from '@tsparticles/slim';
 
 export default function InteractiveNetwork({ className = '' }) {
   const init = useCallback(async (engine) => {
