@@ -5,6 +5,39 @@ import { Briefcase, MapPin, Award } from 'lucide-react';
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
+// Function to calculate experience dynamically from a start date (e.g., January 1, 2024)
+function calculateExperience(startDateStr) {
+  const start = new Date(startDateStr);
+  const now = new Date();
+
+  let years = now.getFullYear() - start.getFullYear();
+  let months = now.getMonth() - start.getMonth();
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  // Handle case where current day is before start day of the month
+  if (now.getDate() < start.getDate()) {
+    months--;
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+  }
+
+  let result = '';
+  if (years > 0) {
+    result += `${years} Year${years > 1 ? 's' : ''}`;
+  }
+  if (months > 0) {
+    if (result) result += ' ';
+    result += `${months} Month${months > 1 ? 's' : ''}`;
+  }
+  return result || '0 Months';
+}
+
 const skills = [
   { label: 'Programming Languages: Java, C++, Python, JavaScript, Swift', value: 88 },
   { label: 'Front-End: Qt, JavaFX, React, Vue, Tailwind CSS', value: 82 },
@@ -19,6 +52,7 @@ const skills = [
 
 export default function SkillsPanel() {
   const cardRef = useRef(null);
+  const experienceString = calculateExperience('2024-01-01'); // Change this date if your career start date is different
 
   // animate bars when the card scrolls into view
   useEffect(() => {
@@ -88,7 +122,7 @@ export default function SkillsPanel() {
               </span>
               <span className="chip">
                 <Award className="size-[14px]" />
-                2 Years 3 Months
+                {experienceString}
               </span>
               <span className="chip">
                 <MapPin className="size-[14px]" />
